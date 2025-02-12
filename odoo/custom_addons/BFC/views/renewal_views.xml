@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_martial_renewal_game_tree" model="ir.ui.view">
+        <field name="name">martial.renewal.game.tree</field>
+        <field name="model">martial.renewal.game</field>
+        <field name="arch" type="xml">
+            <tree string="Martial Arts Renewal">
+                <field name="member_id" string="Member"/>
+                <field name="renewal_time" string="Subscription Renewal"/>
+                <field name="renewal_date"/>
+                <field name="renewal_session"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_martial_renewal_game_form" model="ir.ui.view">
+        <field name="name">martial.renewal.game.form</field>
+        <field name="model">martial.renewal.game</field>
+        <field name="arch" type="xml">
+            <form string="Martial Arts Renewal">
+                <sheet>
+                    <group>
+                        <field name="member_id" string="Member" required="1"/>
+                        <field name="renewal_time" string="Subscription Renewal" required="1"/>
+                        <field name="renewal_date"/>
+                        <field name="renewal_session"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Action to open the list and form views -->
+    <record id="action_martial_renewal_game" model="ir.actions.act_window">
+        <field name="name">Martial Arts Renewal</field>
+        <field name="res_model">martial.renewal.game</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_martial_renewal_game" name="Renewals" parent="martial_arts_menu"
+              action="action_martial_renewal_game"/>
+</odoo>

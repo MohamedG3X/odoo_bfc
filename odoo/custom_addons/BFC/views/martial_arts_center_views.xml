@@ -1,0 +1,89 @@
+<odoo>
+    <data>
+        <!-- Action for the Martial Arts Center Members -->
+        <record id="action_martial_arts_center" model="ir.actions.act_window">
+            <field name="name">BFC</field>
+            <field name="res_model">martial.arts.center</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_martial_arts_center_tree" model="ir.ui.view">
+            <field name="name">martial.arts.center.tree</field>
+            <field name="model">martial.arts.center</field>
+            <field name="arch" type="xml">
+                <tree string="Martial Arts Members">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="contact_info"/>
+                    <field name="subscription_start"/>
+                    <field name="subscription_end"/>
+                    <field name="subscription_status"/>
+                    <field name="subscription_duration"/>
+                    <field name="game_ids" widget="many2many_tags"/>
+                    <field name="number_of_attend"/>
+                    <field name="number_of_session"/>
+                    <field name="remaining_sessions"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_martial_arts_center_form" model="ir.ui.view">
+            <field name="name">martial.arts.center.form</field>
+            <field name="model">martial.arts.center</field>
+            <field name="arch" type="xml">
+                <form string="Martial Arts Member">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="contact_info"/>
+                                <field name="contact_info_readonly"/>
+                                <field name="photo" widget="image"/>
+                            </group>
+                            <group>
+                                <field name="subscription_duration"/>
+                                <field name="subscription_start"/>
+                                <field name="number_of_session"/>
+                                <field name="subscription_end"/>
+                                <field name="subscription_status"/>
+                                <field name="number_of_attend"/>
+                                <field name="remaining_sessions"/>
+                            </group>
+                            <group>
+                                <field name="game_ids" widget="many2many_tags"/>
+                            </group>
+                            <footer>
+                                <button string="Attend-حضور" type="object"
+                                        name="increment_attendance" class="btn-danger"/>
+                            </footer>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Sequence Configuration -->
+        <record id="seq_martial_arts_center" model="ir.sequence">
+            <field name="name">Martial Arts Center Sequence</field>
+            <field name="code">martial.arts.center.sequence</field>
+            <field name="padding">3</field>
+            <field name="prefix">BFC</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Main Menu -->
+        <menuitem id="martial_arts_menu" name="Martial Arts" sequence="0"/>
+
+        <!-- Members Menu -->
+        <menuitem id="martial_arts_member_menu" name="Members" parent="martial_arts_menu"
+                  action="action_martial_arts_center" sequence="0"/>
+    </data>
+</odoo>

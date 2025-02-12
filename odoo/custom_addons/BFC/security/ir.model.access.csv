@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_martial_arts_center,martial_art_center,model_martial_arts_center,,1,1,1,1
+access_martial_arts_game,martial_arts_game,model_martial_arts_game,,1,1,1,1
+access_martial_renewal_game,martial_renewal_game,model_martial_renewal_game,,1,1,1,1
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <report
+            id="report_QR"
+            string="QR card"
+            model="martial.arts.center"
+            report_type="qweb-pdf"
+            name="BFC.report_customer"
+            file="BFC.report_customer"/>
+</odoo>

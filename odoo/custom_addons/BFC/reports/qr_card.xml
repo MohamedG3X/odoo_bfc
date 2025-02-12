@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Template for the PDF report -->
+    <template id="BFC.report_customer">
+        <t t-call="web.html_container">
+            <!-- Header -->
+            <div class="header"
+                 style="text-align: center; margin-bottom: 32px; padding: 32px; background: linear-gradient(135deg, #667eea, #764ba2); color: #ffffff;">
+                <h1 style="font-size: 36px; margin-bottom: 12px; font-weight: bold;">QR CODE</h1>
+            </div>
+
+            <!-- QR Card -->
+            <div class="booking-container"
+                 style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding: 24px;">
+                <t t-foreach="docs" t-as="doc">
+                    <div class=""
+                         style="border: 1px solid #e0e0e0; padding: 24px; border-radius: 16px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); background-color: #0d0dba;">
+
+                        <!-- QR Code -->
+                        <div class="field" style="margin-bottom: 20px; text-align: center;">
+                            <strong style="color: #4a4a4a; font-size: 20px; display: block; margin-bottom: 12px;">
+                                YOUR QR CODE
+                            </strong>
+                            <div style="margin-top: 8px;">
+                                <img t-att-src="'data:image/png;base64,' + doc.generate_qr_code()"
+                                     style="width: 150px; height: 150px; border-radius: 12px;"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <report
+            id="report_QR"
+            model="martial.arts.center"
+            string="QR card"
+            report_type="qweb-pdf"
+            name="BFC.report_customer"
+            file="BFC.report_customer"
+            attachment_use="False"
+    />
+</odoo>

@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_martial_arts_game_form" model="ir.ui.view">
+            <field name="name">martial.arts.game.form</field>
+            <field name="model">martial.arts.game</field>
+            <field name="arch" type="xml">
+                <form string="Martial Arts Game">
+                    <field name="photo"/>
+
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <!-- Add more fields here if needed -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_martial_arts_game_kanban" model="ir.ui.view">
+            <field name="name">martial.arts.game.kanban</field>
+            <field name="model">martial.arts.game</field>
+            <field name="arch" type="xml">
+                <kanban string="Martial Arts Games">
+                    <field name="name"/>
+                    <field name="photo"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </div>
+                                <div>
+                                    <field name="photo" widget="image" class="oe_kanban_image"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_martial_arts_game" model="ir.actions.act_window">
+            <field name="name">Games</field>
+            <field name="res_model">martial.arts.game</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="martial_arts_game_menu" name="Games" parent="martial_arts_menu"
+                  action="action_martial_arts_game"/>
+    </data>
+</odoo>
