@@ -7,8 +7,8 @@ services:
     ports:
       - "8069:8069"
     environment:
-      DB_HOST: "postgres.railway.internal"
-      DB_PORT: "5432"
+      DB_HOST: "roundhouse.proxy.rlwy.net"
+      DB_PORT: "41835"
       DB_USER: "postgres"
       DB_PASSWORD: "cJgQzjWqlWbcojdfgIvEtmCcFJIRoTJo"
       DB_NAME: "railway"
