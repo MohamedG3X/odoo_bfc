@@ -2,30 +2,29 @@ version: '3.1'
 
 services:
   db:
-    image: postgres:10
-    container_name: odoo_db
-    environment:
-      POSTGRES_USER: odoo
-      POSTGRES_PASSWORD: odoo
-      POSTGRES_DB: odoo
-    volumes:
-      - odoo_db_data:/var/lib/postgresql/data
+    image: postgres:12
     restart: always
+    environment:
+      POSTGRES_DB: railway
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cJgQzjWqlWbcojdfgIvEtmCcFJIRoTJo
+    ports:
+      - "5432:5432"
 
   odoo:
-    build: .
-    container_name: odoo_app
+    image: odoo:12
+    restart: always
     depends_on:
       - db
     ports:
       - "8069:8069"
-    volumes:
-      - ./odoo/custom_addons:/mnt/extra-addons
     environment:
-      HOST: db
-      USER: odoo
-      PASSWORD: odoo
-    restart: always
+      - HOST=postgres.railway.internal
+      - USER=postgres
+      - PASSWORD=cJgQzjWqlWbcojdfgIvEtmCcFJIRoTJo
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./odoo/custom_addons:/mnt/extra-addons
 
 volumes:
-  odoo_db_data:
+  odoo-web-data:
