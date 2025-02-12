@@ -8,23 +8,29 @@ services:
       POSTGRES_DB: railway
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: cJgQzjWqlWbcojdfgIvEtmCcFJIRoTJo
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    # Exposing 5432 is optional; remove if not needed
     ports:
       - "5432:5432"
 
   odoo:
-    image: odoo:12
+    build: .
     restart: always
     depends_on:
       - db
-    ports:
-      - "8069:8069"
     environment:
-      - HOST=postgres.railway.internal
+      - HOST=db
+      - PORT=5432
       - USER=postgres
       - PASSWORD=cJgQzjWqlWbcojdfgIvEtmCcFJIRoTJo
+      - DATABASE=railway
+    ports:
+      - "8069:8069"
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./odoo/custom_addons:/mnt/extra-addons
 
 volumes:
+  postgres-data:
   odoo-web-data:
